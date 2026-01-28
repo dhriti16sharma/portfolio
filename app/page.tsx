@@ -96,7 +96,6 @@ export default function Home() {
     </main>
   );
 }
-
 type ProjectProps = {
   title: string;
   desc: string;
