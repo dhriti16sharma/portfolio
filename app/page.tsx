@@ -58,6 +58,7 @@ export default function Home() {
       </section>
 
       {/* PROJECTS */}
+      
       <section className="max-w-6xl mx-auto py-20">
         <h2 className="text-3xl font-semibold mb-10">Projects</h2>
         <div className="grid md:grid-cols-2 gap-8">
@@ -96,12 +97,24 @@ export default function Home() {
   );
 }
 
-function Project({ title, desc, slug }) {
+type ProjectProps = {
+  title: string;
+  desc: string;
+  slug: string;
+};
+
+function Project({ title, desc, slug }: ProjectProps) {
   return (
-    <motion.div whileHover={{ scale: 1.03 }} className="bg-gray-900 rounded-2xl p-6">
+    <motion.div
+      whileHover={{ scale: 1.03 }}
+      className="bg-gray-900 rounded-2xl p-6"
+    >
       <h3 className="text-xl font-semibold mb-2">{title}</h3>
       <p className="text-gray-400 mb-4">{desc}</p>
-      <Link href={`/projects/${slug}`} className="inline-flex items-center gap-2 text-sm hover:text-white">
+      <Link
+        href={`/projects/${slug}`}
+        className="inline-flex items-center gap-2 text-sm hover:text-white"
+      >
         View Project <ExternalLink size={14} />
       </Link>
     </motion.div>
