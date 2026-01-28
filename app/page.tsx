@@ -34,7 +34,7 @@ export default function Home() {
               <a href="https://www.linkedin.com/in/dhriti-sharma1601" target="_blank" className="px-5 py-2 rounded-xl border border-gray-600 flex items-center gap-2">
                 <Linkedin size={18} /> LinkedIn
               </a>
-              <a href="/RESUME.pdf" target="_blank" className="px-5 py-2 rounded-xl border border-gray-600 flex items-center gap-2">
+              <a href="/resume.pdf" target="_blank" className="px-5 py-2 rounded-xl border border-gray-600 flex items-center gap-2">
                 <FileText size={18} /> Resume
               </a>
             </div>
