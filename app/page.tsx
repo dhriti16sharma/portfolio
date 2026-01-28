@@ -1,65 +1,109 @@
-import Image from "next/image";
+"use client";
+
+import { motion } from "framer-motion";
+import { Github, Linkedin, Mail, ExternalLink, FileText } from "lucide-react";
+import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+    <main className="min-h-screen bg-gradient-to-b from-black via-gray-900 to-black text-white px-6 md:px-12">
+
+      {/* HERO */}
+      <section className="max-w-6xl mx-auto min-h-screen flex items-center">
+        <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }} className="flex flex-col md:flex-row items-center gap-10">
+          <img
+            src="/profile.png"
+            alt="Dhriti Sharma"
+            className="w-48 h-48 md:w-56 md:h-56 rounded-full object-cover border-4 border-gray-700 shadow-lg"
+          />
+
+          <div>
+            <h1 className="text-5xl md:text-7xl font-bold leading-tight">Dhriti Sharma</h1>
+            <p className="mt-3 text-lg text-gray-300">
+              AI Engineer • Frontend Developer • Computer Vision Enthusiast
+            </p>
+            <p className="mt-6 max-w-2xl text-lg text-gray-300 leading-relaxed">
+              Computer Science undergraduate with hands-on experience in AI/ML,
+              computer vision, and production-grade frontend development.
+            </p>
+
+            <div className="flex flex-wrap gap-4 mt-6">
+              <a href="https://github.com/dhriti16sharma" target="_blank" className="px-5 py-2 rounded-xl bg-white text-black flex items-center gap-2">
+                <Github size={18} /> GitHub
+              </a>
+              <a href="https://www.linkedin.com/in/dhriti-sharma1601" target="_blank" className="px-5 py-2 rounded-xl border border-gray-600 flex items-center gap-2">
+                <Linkedin size={18} /> LinkedIn
+              </a>
+              <a href="/resume.pdf" target="_blank" className="px-5 py-2 rounded-xl border border-gray-600 flex items-center gap-2">
+                <FileText size={18} /> Resume
+              </a>
+            </div>
+          </div>
+        </motion.div>
+      </section>
+
+      {/* SKILLS */}
+      <section className="max-w-6xl mx-auto py-20">
+        <h2 className="text-3xl font-semibold mb-8">Skills</h2>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          {["Python", "Machine Learning", "Computer Vision", "MediaPipe", "OpenCV", "FastAPI", "Next.js", "React", "Tailwind CSS", "TypeScript", "Git", "GitHub"].map(skill => (
+            <div
+              key={skill}
+              className="bg-gray-900 rounded-xl px-4 py-3 text-center text-gray-300 transition-transform duration-300 hover:scale-110 hover:bg-gray-800 cursor-default"
             >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+              {skill}
+            </div>
+          ))}
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </section>
+
+      {/* PROJECTS */}
+      <section className="max-w-6xl mx-auto py-20">
+        <h2 className="text-3xl font-semibold mb-10">Projects</h2>
+        <div className="grid md:grid-cols-2 gap-8">
+
+          <Project
+            title="Sahore Life – Healthcare Platform"
+            desc="Frontend development for a production healthcare platform during internship."
+            slug="sahore-life"
+          />
+
+          <Project
+            title="AI Customer Churn Predictor"
+            desc="End-to-end ML pipeline with FastAPI backend and Streamlit frontend."
+            slug="churn-predictor"
+          />
+
+          <Project
+            title="HandSketch – Computer Vision"
+            desc="Real-time hand gesture recognition and drawing using MediaPipe & OpenCV."
+            slug="handsketch"
+          />
+
+          <Project
+            title="Student Management System"
+            desc="CRUD-based system for managing student records with authentication."
+            slug="student-management"
+          />
         </div>
-      </main>
-    </div>
+      </section>
+
+      {/* FOOTER */}
+      <footer className="text-center text-gray-500 pb-10">
+        © {new Date().getFullYear()} Dhriti Sharma
+      </footer>
+    </main>
+  );
+}
+
+function Project({ title, desc, slug }) {
+  return (
+    <motion.div whileHover={{ scale: 1.03 }} className="bg-gray-900 rounded-2xl p-6">
+      <h3 className="text-xl font-semibold mb-2">{title}</h3>
+      <p className="text-gray-400 mb-4">{desc}</p>
+      <Link href={`/projects/${slug}`} className="inline-flex items-center gap-2 text-sm hover:text-white">
+        View Project <ExternalLink size={14} />
+      </Link>
+    </motion.div>
   );
 }
