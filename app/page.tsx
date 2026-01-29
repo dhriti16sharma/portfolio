@@ -1,144 +1,330 @@
 "use client";
 
+import React from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { Github, Linkedin, FileText } from "lucide-react";
+import { Github, Linkedin, FileText, ArrowRight } from "lucide-react";
 
-type ProjectProps = {
+// ---------------- TYPES ----------------
+type CardProps = {
   title: string;
-  desc: string;
-  slug: string;
-  image: string;
+  subtitle?: string;
+  href: string;
+  image?: string;
+  highlight?: boolean;
 };
 
+// ---------------- PAGE ----------------
 export default function Home() {
+  const [showImage, setShowImage] = React.useState(false);
   return (
-    <main className="min-h-screen bg-gradient-to-b from-black via-gray-900 to-black text-white px-6 md:px-12">
+    <main className="min-h-screen bg-[#181a1b] text-white px-6 md:px-12 py-10">
 
-      {/* HERO */}
-      <section className="max-w-6xl mx-auto min-h-screen flex items-center">
+      {/* NAVBAR */}
+     <header className="max-w-7xl mx-auto flex items-center justify-between mb-14">
+  <h1 className="text-xl font-semibold">Dhriti</h1>
+
+  <nav className="hidden md:flex gap-8 text-gray-300">
+    <a
+      href="https://github.com/dhriti16sharma"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="hover:text-white"
+    >
+      Work
+    </a>
+    <a
+      href="/RESUME.pdf"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="hover:text-white"
+    >
+      Resume
+    </a>
+  </nav>
+       <a
+  href="https://www.linkedin.com/in/dhriti-sharma1601"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="bg-white text-black px-5 py-2 rounded-full text-sm font-medium"
+>
+  GET IN TOUCH
+</a>
+      </header>
+
+      {/* GRID */}
+      <section className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 auto-rows-[220px] gap-6">
+
+        {/* HERO CARD */}
+       <motion.div
+  whileHover={{ scale: 1.02 }}
+  className="md:col-span-2 relative bg-[#242628] rounded-3xl overflow-hidden"
+>
+  {/* DARK BASE */}
+  <div className="absolute inset-0 bg-[#181a1b]" />
+
+  {/* DARK OVERLAY – SAME AS PROJECTS */}
+  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+
+  {/* CONTENT */}
+  <div className="relative z-10 h-full p-8 flex flex-col justify-between">
+    <div className="flex items-center gap-4">
+      {/* PROFILE IMAGE (CLICKABLE) */}
+      <motion.img
+        src="/profile.png"
+        alt="Dhriti Sharma"
+        whileHover={{ scale: 1.05 }}
+        onClick={() => setShowImage(true)}
+        className="w-20 h-20 md:w-24 md:h-24 rounded-full object-cover cursor-pointer border border-white/10"
+      />
+
+      <div>
+        <h2 className="text-3xl font-semibold text-white">
+          Hey, I’m Dhriti 👋
+        </h2>
+        <p className="text-gray-300 text-sm">
+          AI Engineer • Frontend Developer
+        </p>
+      </div>
+    </div>
+
+    <Link
+      href="#about"
+      className="flex items-center gap-2 text-gray-300 hover:text-white"
+    >
+      About me <ArrowRight size={18} />
+    </Link>
+  </div>
+</motion.div>
+
+
+        {/* RESUME CARD */}
+        <Link href="/resume.pdf" target="_blank" className="md:col-span-1">
+  <motion.div
+    whileHover={{ scale: 1.02 }}
+    className="relative bg-[#242628] rounded-3xl overflow-hidden cursor-pointer h-full"
+  >
+    {/* DARK BASE */}
+    <div className="absolute inset-0 bg-[#181a1b]" />
+
+    {/* DARK OVERLAY – SAME AS PROJECTS */}
+    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+
+    {/* CONTENT */}
+    <div className="relative z-10 h-full p-6 flex flex-col justify-end">
+      <p className="text-gray-300 text-sm mb-1">
+        Resume
+      </p>
+
+      <h3 className="text-xl font-semibold text-white">
+        View my Resume
+      </h3>
+
+      <span className="mt-2 text-sm text-gray-300 flex items-center gap-2">
+        Open <span>→</span>
+      </span>
+    </div>
+  </motion.div>
+</Link>
+
+
+        {/* FEATURED PROJECT */}
+       <Link href="/projects/sahore-life" className="md:col-span-1">
+  <motion.div
+    whileHover={{ scale: 1.02 }}
+    className="relative bg-[#242628] rounded-3xl overflow-hidden cursor-pointer h-full"
+  >
+
+    {/* DARK OVERLAY */}
+    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+
+    {/* TEXT (MATCHES OTHER CARDS) */}
+    <div className="relative z-10 h-full p-6 flex flex-col justify-end">
+      <p className="text-gray-300 text-sm mb-1">Healthcare Platform</p>
+      <h3 className="text-xl font-semibold">Sahore Life</h3>
+
+      <span className="mt-2 text-sm text-gray-300 flex items-center gap-2">
+        View <span>→</span>
+      </span>
+    </div>
+  </motion.div>
+</Link>
+
+
+
+        {/* PROJECT CARDS */}
+       <Link href="/projects/churn-predictor" className="md:col-span-1">
+  <motion.div
+    whileHover={{ scale: 1.02 }}
+    className="relative bg-[#242628] rounded-3xl overflow-hidden cursor-pointer h-full"
+  >
+  
+
+    {/* DARK OVERLAY (SAME AS OTHERS) */}
+    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+
+    {/* CONTENT */}
+    <div className="relative z-10 h-full p-6 flex flex-col justify-end">
+      <p className="text-gray-300 text-sm mb-1">Machine Learning</p>
+      <h3 className="text-xl font-semibold text-white">
+        AI Customer Churn Predictor
+      </h3>
+      <span className="mt-2 text-sm text-gray-300 flex items-center gap-2">
+        View <span>→</span>
+      </span>
+    </div>
+  </motion.div>
+</Link>
+
+
+
+        <Link href="/projects/handsketch" className="md:col-span-1">
+  <motion.div
+    whileHover={{ scale: 1.02 }}
+    className="relative bg-[#242628] rounded-3xl overflow-hidden cursor-pointer h-full"
+  >
+    
+
+    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+
+    <div className="relative z-10 h-full p-6 flex flex-col justify-end">
+      <p className="text-gray-300 text-sm mb-1">Computer Vision</p>
+      <h3 className="text-xl font-semibold">HandSketch</h3>
+      <span className="mt-2 text-sm text-gray-300 flex items-center gap-2">
+        View <span>→</span>
+      </span>
+    </div>
+  </motion.div>
+</Link>
+
+
+        <Link href="/projects/student-management" className="md:col-span-1">
+  <motion.div
+    whileHover={{ scale: 1.02 }}
+    className="relative bg-[#242628] rounded-3xl overflow-hidden cursor-pointer h-full"
+  >
+   
+
+    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+
+    <div className="relative z-10 h-full p-6 flex flex-col justify-end">
+      <p className="text-gray-300 text-sm mb-1">Full Stack Application</p>
+      <h3 className="text-xl font-semibold">Student Management System</h3>
+      <span className="mt-2 text-sm text-gray-300 flex items-center gap-2">
+        View <span>→</span>
+      </span>
+    </div>
+  </motion.div>
+</Link>
+
+
+        {/* CONTACT CARD */}
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
-          className="flex flex-col md:flex-row items-center gap-10"
+  whileHover={{ scale: 1.02 }}
+  className="md:col-span-2 relative bg-[#242628] rounded-3xl overflow-hidden"
+>
+  {/* DARK BASE */}
+  <div className="absolute inset-0 bg-[#181a1b]" />
+
+  {/* DARK OVERLAY – SAME AS PROJECTS */}
+  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+
+  {/* CONTENT */}
+  <div className="relative z-10 h-full p-8 flex flex-col justify-between">
+    <p className="text-gray-300 text-sm">
+      Collaborate together!
+    </p>
+
+    <h3 className="text-3xl font-semibold text-white">
+      Get in touch now
+    </h3>
+
+   <a
+  href="https://www.linkedin.com/in/dhriti-sharma1601"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="flex items-center gap-2 text-gray-300 hover:text-white"
+>
+  Contact <ArrowRight size={18} />
+</a>
+
+  </div>
+</motion.div>
+
+
+        {/* SKILLS CARD */}
+       <motion.div
+  whileHover={{ scale: 1.02 }}
+  className="relative bg-[#242628] rounded-3xl overflow-hidden"
+>
+  {/* DARK BASE */}
+  <div className="absolute inset-0 bg-[#181a1b]" />
+
+  {/* DARK OVERLAY – SAME AS PROJECTS */}
+  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+
+  {/* CONTENT */}
+  <div className="relative z-10 h-full p-6">
+    <p className="text-gray-300 text-sm mb-4">
+      WHAT I DO
+    </p>
+
+    {/* TECH STACK */}
+    <div className="flex flex-wrap gap-2 text-xs text-gray-300">
+       <span className="px-2 py-1 border border-white/10 rounded-full">AI/ML</span>
+      <span className="px-2 py-1 border border-white/10 rounded-full">Python</span>
+      <span className="px-2 py-1 border border-white/10 rounded-full">Scikit-Learn</span>
+      <span className="px-2 py-1 border border-white/10 rounded-full">Computer Vision</span>
+      <span className="px-2 py-1 border border-white/10 rounded-full">OpenCV</span>
+      <span className="px-2 py-1 border border-white/10 rounded-full">MediaPipe</span>
+      <span className="px-2 py-1 border border-white/10 rounded-full">React</span>
+      <span className="px-2 py-1 border border-white/10 rounded-full">Next.js</span>
+      <span className="px-2 py-1 border border-white/10 rounded-full">Tailwind</span>
+      <span className="px-2 py-1 border border-white/10 rounded-full">Git</span>
+    </div>
+  </div>
+</motion.div>
+
+
+
+      </section>
+
+      {/* FOOTER */}
+      <footer className="max-w-7xl mx-auto mt-20 text-gray-500 text-sm flex gap-6">
+        <a href="https://github.com/dhriti16sharma" target="_blank">GitHub</a>
+        <a href="https://www.linkedin.com/in/dhriti-sharma1601" target="_blank">LinkedIn</a>
+      </footer>
+    {/* IMAGE MODAL */}
+      {showImage && (
+        <div
+          onClick={() => setShowImage(false)}
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-md"
         >
           <img
             src="/profile.png"
-            alt="Dhriti Sharma"
-            className="w-48 h-48 md:w-56 md:h-56 rounded-full object-cover border-4 border-gray-700 shadow-lg"
-          />
-
-          <div>
-            <h1 className="text-5xl md:text-7xl font-bold">
-              Dhriti Sharma
-            </h1>
-
-            <p className="mt-3 text-lg text-gray-300">
-              AI Engineer • Frontend Developer • Computer Vision
-            </p>
-
-            <p className="mt-6 max-w-2xl text-gray-400 text-lg">
-              Computer Science undergraduate building intelligent systems,
-              real-world AI projects, and clean, scalable web applications.
-            </p>
-
-            <div className="flex flex-wrap gap-4 mt-6">
-              <a href="https://github.com/dhriti16sharma" target="_blank" className="btn">
-                <Github size={18} /> GitHub
-              </a>
-              <a href="https://www.linkedin.com/in/dhriti-sharma1601" target="_blank" className="btn-outline">
-                <Linkedin size={18} /> LinkedIn
-              </a>
-              <a href="/resume.pdf" target="_blank" className="btn-outline">
-                <FileText size={18} /> Resume
-              </a>
-            </div>
-          </div>
-        </motion.div>
-      </section>
-
-      {/* SKILLS */}
-      <section className="max-w-6xl mx-auto py-20">
-        <h2 className="text-3xl font-semibold mb-8">Skills</h2>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          {[
-            "Python", "Machine Learning", "Computer Vision", "MediaPipe",
-            "OpenCV", "FastAPI", "Next.js", "React",
-            "Tailwind CSS", "TypeScript", "Git", "GitHub",
-          ].map(skill => (
-            <div
-              key={skill}
-              className="bg-gray-900 rounded-xl px-4 py-3 text-center text-gray-300
-                         transition-transform duration-300 hover:scale-110 hover:bg-gray-800"
-            >
-              {skill}
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* PROJECTS */}
-      <section className="max-w-6xl mx-auto py-20">
-        <h2 className="text-3xl font-semibold mb-10">Projects</h2>
-
-        <div className="grid md:grid-cols-2 gap-8">
-          <Project
-            title="Sahore Life – Healthcare Platform"
-            desc="Production healthcare website built during my frontend internship."
-            slug="sahore-life"
-            image="/projects/sahore-life.png"
-          />
-          <Project
-            title="AI Customer Churn Predictor"
-            desc="End-to-end ML system for predicting customer churn."
-            slug="churn-predictor"
-            image="/projects/churn-predictor.png"
-          />
-          <Project
-            title="HandSketch – Computer Vision"
-            desc="Real-time hand gesture recognition and drawing system."
-            slug="handsketch"
-            image="/projects/handsketch.png"
-          />
-          <Project
-            title="Student Management System"
-            desc="CRUD-based platform for managing student records."
-            slug="student-management"
-            image="/projects/student-management.png"
+            className="w-72 h-72 md:w-96 md:h-96 rounded-full object-cover shadow-2xl"
           />
         </div>
-      </section>
-
-      <footer className="text-center text-gray-500 pb-10">
-        © {new Date().getFullYear()} Dhriti Sharma
-      </footer>
+      )}
     </main>
   );
 }
 
-function Project({ title, desc, slug, image }: ProjectProps) {
+// ---------------- CARD COMPONENT ----------------
+function Card({ title, subtitle, href }: CardProps) {
   return (
-    <motion.div
-      whileHover={{ y: -6 }}
-      className="bg-gray-900 rounded-2xl overflow-hidden shadow-lg"
+    <motion.a
+      whileHover={{ scale: 1.02 }}
+      href={href}
+      className="bg-[#242628] rounded-3xl p-6 flex flex-col justify-between"
     >
-      <img
-        src={image}
-        alt={title}
-        className="h-48 w-full object-cover transition-transform duration-300 hover:scale-105"
-      />
-      <div className="p-6">
-        <h3 className="text-xl font-semibold mb-2">{title}</h3>
-        <p className="text-gray-400 mb-4">{desc}</p>
-        <Link href={`/projects/${slug}`} className="text-blue-400 hover:text-blue-300">
-          View Details →
-        </Link>
+      <div>
+        {subtitle && <p className="text-gray-400 text-sm mb-1">{subtitle}</p>}
+        <h3 className="text-xl font-semibold">{title}</h3>
       </div>
-    </motion.div>
+      <span className="flex items-center gap-2 text-gray-300">
+        View <ArrowRight size={18} />
+      </span>
+    </motion.a>
   );
 }
-
-/* buttons */
-const btn = "inline-flex items-center gap-2 px-5 py-2 bg-white text-black rounded-xl";
-const btnOutline = "inline-flex items-center gap-2 px-5 py-2 border border-gray-600 rounded-xl";

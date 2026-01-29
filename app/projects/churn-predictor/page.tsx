@@ -1,32 +1,57 @@
+"use client";
+
+import { motion } from "framer-motion";
+import Link from "next/link";
+import { ArrowLeft, Github } from "lucide-react";
+
 export default function ChurnPredictor() {
   return (
-    <section className="max-w-5xl mx-auto px-6 py-20 text-white">
-      <h1 className="text-4xl font-bold mb-4">AI Customer Churn Predictor</h1>
+    <main className="min-h-screen bg-[#181a1b] text-white px-6 md:px-12 py-10">
 
-      <p className="text-gray-400 mb-8">
-        ML system that predicts customer churn to help businesses take preventive action.
-      </p>
+      <Link href="/" className="inline-flex items-center gap-2 text-gray-400 hover:text-white mb-8">
+        <ArrowLeft size={18} /> Back
+      </Link>
 
-      <img src="/projects/churn-predictor.png" className="rounded-xl shadow-lg mb-12" />
+      <section className="max-w-6xl mx-auto grid md:grid-cols-2 gap-8">
 
-      <h2 className="section-title">What I Built</h2>
-      <ul className="list-disc list-inside text-gray-400 mb-6">
-        <li>Data preprocessing & feature engineering</li>
-        <li>ML classification model</li>
-        <li>FastAPI backend for inference</li>
-        <li>Streamlit frontend</li>
-      </ul>
+        <Card title="AI Customer Churn Predictor">
+          End-to-end machine learning system that predicts customer churn
+          using historical customer data to enable proactive decision-making.
+        </Card>
 
-      <h2 className="section-title">Tech Stack</h2>
-      <p className="text-gray-400">Python, Pandas, Scikit-learn, FastAPI</p>
+        <Card title="What I Built">
+          <ul className="list-disc list-inside space-y-2">
+            <li>Data preprocessing & feature engineering</li>
+            <li>ML classification model</li>
+            <li>FastAPI backend for inference</li>
+            <li>Streamlit-based frontend</li>
+          </ul>
+        </Card>
 
-      <a
-        href="https://github.com/dhriti16sharma/AI-Customer-Churn-Predictor"
-        target="_blank"
-        className="btn mt-8"
-      >
-        GitHub
-      </a>
-    </section>
+        <Card title="Tech Stack">
+          Python, Pandas, Scikit-learn, FastAPI, Streamlit
+        </Card>
+
+        <Card>
+          <a
+            href="https://github.com/dhriti16sharma/AI-Customer-Churn-Predictor"
+            target="_blank"
+            className="inline-flex items-center gap-2 bg-white text-black px-5 py-2 rounded-full"
+          >
+            <Github size={18} /> GitHub
+          </a>
+        </Card>
+
+      </section>
+    </main>
+  );
+}
+
+function Card({ title, children }: { title?: string; children: React.ReactNode }) {
+  return (
+    <div className="bg-[#242628] rounded-3xl p-8">
+      {title && <h2 className="text-2xl font-semibold mb-4">{title}</h2>}
+      <div className="text-gray-400 leading-relaxed">{children}</div>
+    </div>
   );
 }
